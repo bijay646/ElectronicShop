@@ -1,5 +1,7 @@
 import "./CartItem.scss";
 import { Link } from "react-router-dom";
+import {BsTrash} from "react-icons/bs"
+
 
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
   return (
@@ -10,7 +12,7 @@ const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
       <Link to={`/product/${item.product}`} className="cartItem__name">
         <p>{item.name}</p>
       </Link>
-      <p className="cartitem__price">${item.price}</p>
+      <p className="cartitem__price">Rs.{item.price.slice(1)}</p>
       <select
         value={item.qty}
         onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
@@ -26,7 +28,7 @@ const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
         className="cartItem__deleteBtn"
         onClick={() => removeHandler(item.product)}
       >
-        <i className="fas fa-trash"></i>
+      <BsTrash />
       </button>
     </div>
   );

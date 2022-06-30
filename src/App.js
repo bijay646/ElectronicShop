@@ -1,4 +1,3 @@
-import './App.scss';
 import { useState } from 'react';
 import {BrowserRouter as Router,Routes, Route} from 'react-router-dom';
 
@@ -17,9 +16,12 @@ function App() {
       <Navbar click={()=>setSideToggle(true)}/>
       <SideDrawer show={sideToggle} click={()=>setSideToggle(false)}/>
       <Backdrop show={sideToggle} click={()=>setSideToggle(false)} />
+      {/* <Navbar /> */}
+      {/* <SideDrawer />
+      <Backdrop /> */}
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
-          <Route exact path="/product/:id" element={<ProductScreen />} />
+          <Route exact path="/product/:id" element={<ProductScreen click={()=>setSideToggle(true)}/>} />
           <Route exact path="/cart" element={<CartScreen />} />
         </Routes>
     </Router>

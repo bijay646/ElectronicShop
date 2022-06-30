@@ -2,31 +2,17 @@ import './ProductScreen.scss';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-// import { getProducts as listProducts } from "../redux/actions/productActions";
 import { getProductDetails } from "../redux/actions/productActions";
 import { addToCart } from "../redux/actions/cartActions";
 
-const ProductScreen = ({ history }) => {
+const ProductScreen = ({click }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const params = useParams();
-  const navigate = useNavigate();
-  // const getProducts = useSelector((state) => state.getProducts);
+
   const productDetails = useSelector((state) => state.getProductDetails);
   const { loading, error, product } = productDetails;
   
-  // const { products, loading, error } = getProducts;
-  // useEffect(() => {
-  //   dispatch(listProducts());
-  // }, [dispatch]);
-  // console.log('point1');
-  // console.log(products);
-  // console.log('point2');
-  // const product = products[params.id-1];
-  // console.log(product);
-  // console.log('point3');
-
   useEffect(() => {
     if (product && params.id !== product.id) {
       dispatch(getProductDetails(params.id));
@@ -36,7 +22,7 @@ const ProductScreen = ({ history }) => {
 
   const addToCartHandler = () => {
     dispatch(addToCart(product.id, qty));
-    navigate("/cart");
+    click();
   };
   return (
     <div className="productscreen">

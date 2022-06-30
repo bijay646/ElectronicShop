@@ -1,14 +1,38 @@
 import './SideDrawer.scss';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import CartItem from './CartItem';
+import { addToCart, removeFromCart } from "../redux/actions/cartActions";
+
+
 
 const SideDrawer = ({ show, click }) => {
-    const cart = useSelector(state=> state.cart);
-    const {cartItems} = cart;
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
 
-    const getCartCount =()=>{
-        return cartItems.reduce((qty, item)=>Number(item.qty)+qty , 0);
-    }
+    useEffect(() => { }, []);
+
+    const qtyChangeHandler = (id, qty) => {
+        dispatch(addToCart(id, qty));
+    };
+
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id));
+    };
+
+    const getCartCount = () => {
+        return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
+    };
+
+    const getCartSubTotal = () => {
+        return cartItems
+            .reduce((price, item) =>
+
+                price + Number(item.price.slice(1)) * item.qty, 0)
+            .toFixed(2);
+    };
 
     const sideDrawerClass = ["sidedrawer"];
     if (show) {
@@ -16,24 +40,37 @@ const SideDrawer = ({ show, click }) => {
     }
     return (
         <div className={sideDrawerClass.join(" ")}>
-            <ul className='sidedrawer__links' onClick={click}>
-                <li>
-                    <Link to="/cart" className='__link'>
-                        <i className="fas fa-shopping-cart"></i>
-                        <span>
-                            Cart
-                            <span className='sidedrawer__cartbadge'>{getCartCount()}</span>
-                        </span>
+            <div className="cartscreen">
 
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/">
-                        Shop
+                <div className="cartscreen__left">
+                    <h2>Shopping Cart</h2>
 
-                    </Link>
-                </li>
-            </ul>
+                    {cartItems.length === 0 ? (
+                        <div>
+                            Your Cart Is Empty <Link to="/">Go Back</Link>
+                        </div>
+                    ) : (
+                        cartItems.map((item) => (
+                            <CartItem
+                                key={item.product}
+                                item={item}
+                                qtyChangeHandler={qtyChangeHandler}
+                                removeHandler={removeFromCartHandler}
+                            />
+                        ))
+                    )}
+                </div>
+
+                <div className="cartscreen__right">
+                    <div className="cartscreen__info">
+                        <p>Subtotal ({getCartCount()}) items</p>
+                        <p>Rs.{getCartSubTotal()}</p>
+                    </div>
+                    <div>
+                        <button>Checkout</button>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
