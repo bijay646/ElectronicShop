@@ -1,11 +1,11 @@
-import "./CartItem.css";
+import "./CartItem.scss";
 import { Link } from "react-router-dom";
 
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
   return (
     <div className="cartitem">
       <div className="cartitem__image">
-        <img src={item.imageUrl} alt={item.name} />
+        <img src={`https://electronic-ecommerce.herokuapp.com/${item.imageUrl}`} alt={item.name} />
       </div>
       <Link to={`/product/${item.product}`} className="cartItem__name">
         <p>{item.name}</p>

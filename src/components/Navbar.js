@@ -1,18 +1,22 @@
-import './Navbar.css';
+import './Navbar.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Navbar = ({click}) => {
-    const cart = useSelector(state=> state.cart);
-    const {cartItems} = cart;
+const Navbar = ({ click }) => {
+    const cart = useSelector(state => state.cart);
+    const { cartItems } = cart;
 
-    const getCartCount =()=>{
-        return cartItems.reduce((qty, item)=>Number(item.qty)+qty , 0);
+    const getCartCount = () => {
+        return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
     }
     return (
         <nav className='navbar'>
             <div className='navbar__logo'>
-                <h2>MERN Shopping Cart</h2>
+                <Link to="/">
+                    <h2>Electronic Shop</h2>
+
+                </Link>
+
             </div>
 
             <ul className='navbar__links'>

@@ -1,7 +1,8 @@
-import './Product.css'
+import './Product.scss'
 import { Link } from 'react-router-dom'
 
-const Product = ({ imageUrl, name, price, productId, createDate, category }) => {
+
+const Product = ({ imageUrl, name, price, productId, createDate, category, stock }) => {
     return (
         <div className='product'>
             <img
@@ -14,6 +15,7 @@ const Product = ({ imageUrl, name, price, productId, createDate, category }) => 
                 <Link to={`/product/${productId}`} className="info__button">
                     View
                 </Link>
+               
             </div>
         </div>
     )

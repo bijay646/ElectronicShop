@@ -1,4 +1,4 @@
-import "./CartScreen.css";
+import "./CartScreen.scss";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const CartScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(addToCart(id, qty));
@@ -31,7 +31,9 @@ const CartScreen = () => {
 
   const getCartSubTotal = () => {
     return cartItems
-      .reduce((price, item) => price + item.price * item.qty, 0)
+      .reduce((price, item) =>
+    
+        price + Number(item.price.slice(1)) * item.qty, 0)
       .toFixed(2);
   };
 
@@ -60,10 +62,10 @@ const CartScreen = () => {
         <div className="cartscreen__right">
           <div className="cartscreen__info">
             <p>Subtotal ({getCartCount()}) items</p>
-            <p>${getCartSubTotal()}</p>
+            <p>Rs.{getCartSubTotal()}</p>
           </div>
           <div>
-            <button>Proceed To Checkout</button>
+            <button>Checkout</button>
           </div>
         </div>
       </div>

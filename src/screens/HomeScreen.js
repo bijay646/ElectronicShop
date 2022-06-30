@@ -1,4 +1,4 @@
-import "./HomeScreen.css";
+import "./HomeScreen.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -35,6 +35,7 @@ const HomeScreen = () => {
               productId={product.id}
               createDate={product.createDate}
               category={product.category}
+              stock={product.stock}
             />
           ))
         )}
