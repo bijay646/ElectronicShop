@@ -12,10 +12,11 @@ const Product = ({ imageUrl, name, price, productId, createDate, category, stock
             <div className='product_info'>
                 <p className='info__name'>{name}</p>
                 <p className='info__price'>Rs.{price.slice(1)}</p>
+                <p ><span className='info__category1'>Category:</span>{category[0]} <span className='info__category2'>({category[1]})</span></p>
                 <Link to={`/product/${productId}`} className="info__button">
-                    View
+                    View Product
                 </Link>
-               
+
             </div>
         </div>
     )

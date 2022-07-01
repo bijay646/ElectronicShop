@@ -1,5 +1,4 @@
 import './SideDrawer.scss';
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from './CartItem';
@@ -11,8 +10,6 @@ const SideDrawer = ({ show, click }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
-
-    useEffect(() => { }, []);
 
     const qtyChangeHandler = (id, qty) => {
         dispatch(addToCart(id, qty));
@@ -66,9 +63,18 @@ const SideDrawer = ({ show, click }) => {
                         <p>Subtotal ({getCartCount()}) items</p>
                         <p>Rs.{getCartSubTotal()}</p>
                     </div>
-                    <div>
-                        <button>Checkout</button>
-                    </div>
+                    {cartItems.length === 0 ? (
+                        <div>
+                            <button className='checkout__btn'>Checkout</button>
+                        </div>
+                    ) : (
+                        <div>
+                            <Link to='/checkout' className='checkout__btn'>Checkout</Link>
+                        </div>
+                    )
+                    }
+
+                    
                 </div>
             </div>
         </div>

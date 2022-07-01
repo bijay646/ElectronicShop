@@ -1,11 +1,7 @@
 import "./HomeScreen.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// Components
 import Product from "../components/Product";
-
-//Actions
 import { getProducts as listProducts } from "../redux/actions/productActions";
 
 const HomeScreen = () => {
@@ -17,6 +13,8 @@ const HomeScreen = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
+  //  const newproducts =products.filter((product)=>product.category[1]==='laptop');
+
   return (
     <div className="homescreen">
       <h2 className="homescreen__title">Latest Products</h2>
@@ -27,7 +25,8 @@ const HomeScreen = () => {
           <h2>{error}</h2>
         ) : (
           products.map((product) => (
-            <Product
+            
+              <Product
               key={product.id}
               name={product.name}
               price={product.price}
@@ -37,6 +36,7 @@ const HomeScreen = () => {
               category={product.category}
               stock={product.stock}
             />
+           
           ))
         )}
       </div>

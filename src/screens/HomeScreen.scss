@@ -11,23 +11,27 @@
   }
   
   .homescreen__products {
+    padding:60px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
   @media (max-width: 1232px) {
     .homescreen__products {
+      padding:20px;
       grid-template-columns: repeat(3, auto);
     }
   }
   
   @media (max-width: 950px) {
     .homescreen__products {
+      padding:10px;
       grid-template-columns: repeat(2, auto);
     }
   }
   
   @media (max-width: 630px) {
     .homescreen__products {
+      padding:5px;
       grid-template-columns: 1fr;
     }
   }

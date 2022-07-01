@@ -1,0 +1,74 @@
+
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+ .checkout__form{
+
+    display: flex;
+    align-items: center;
+
+ }
+
+ .form__left{
+    height:100%;
+    width: 100%;
+    box-shadow: 2px 4px 10px 5px rgba(0, 0, 0, 0.4);
+ }
+ .form__right{
+    display: flex;
+    justify-content: center;
+    p{
+        color: black;
+        font-size: 1rem;
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+    input{
+        border: 2px solid green;
+        border-radius: 5px;
+        padding-right:120px;
+        padding-top:5px
+    }
+    input:hover{
+        border: 1px solid orange;
+
+    }
+    span{
+        color:red;
+        font-size: 0.8rem;
+        padding-left: 30px;
+    }
+ }
+
+ .submit__btn{
+    margin-top: 20px;
+    padding:10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+ }
+ .submit__btn:hover{
+    
+    background-color: #175d5f;
+    color: white;
+    border: none;
+ }
+
+ @media (max-width: 570px) {
+    .checkout__form{
+        flex-direction: column;
+    
+     }
+     .form__left{
+        padding-top: 10px;
+     }
+     .form__right{
+        padding-top: 30px;
+     }
+    
+    
+ }
