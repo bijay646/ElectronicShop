@@ -11,9 +11,10 @@ import CheckoutScreen from './screens/CheckoutScreen';
 
 function App() {
   const [sideToggle, setSideToggle]= useState(false);
+
   return (
     <Router>
-      <Navbar click={()=>setSideToggle(true)}/>
+      <Navbar click={()=>setSideToggle(true)} />
       <SideDrawer show={sideToggle} click={()=>setSideToggle(false)}/>
       <Backdrop show={sideToggle} click={()=>setSideToggle(false)} />
         <Routes>
